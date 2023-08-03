@@ -1,0 +1,26 @@
+**Project Development Steps**
+
+1. [Step 1 - Project Setup](./steps/step1_project_setup.md)
+2. [Step 2 - Project Structure and Initial Setup](./steps/step2_project_structure.md)
+3. [Step 3 - Creating Components](./steps/step3_creating_components.md)
+4. [Step 4 - Creating Containers and Pages](./steps/step4_creating_containers_pages.md)
+5. [Step 5 - Handling Redux State](./steps/step5_handling_redux_state.md)
+6. [Step 6 - Handling API Requests](./steps/step6_handling_api_requests.md)
+7. [Step 7 - Handling Form Submission](./steps/step7_handling_form_submission.md)
+8. [Step 8 - Styling Components](./steps/step8_styling_components.md)
+9. [Step 9 - Implementing Routing](./steps/step9_implementing_routing.md)
+10. [Step 10 - Integrating Video Streaming and Image Processing](./steps/step10_integrating_video_image.md)
+11. [Step 11 - Handling Authentication and JWT](./steps/step11_handling_authentication.md)
+12. [Step 12 - Testing and Debugging](./steps/step12_testing_debugging.md)
+13. [Step 13 - Deployment and Production Build](./steps/step13_deployment_production.md)
+14. [Step 14 - Documenting the Code](./steps/step14_documenting_code.md)
+15. [Step 15 - Code Review and Collaboration](./steps/step15_code_review_collaboration.md)
+16. [Step 16 - Handling Error and Exception Handling](./steps/step16_handling_error_exception.md)
+17. [Step 17 - Optimizing Performance](./steps/step17_optimizing_performance.md)
+18. [Step 18 - Accessibility (a11y)](./steps/step18_accessibility.md)
+19. [Step 19 - Security](./steps/step19_security.md)
+20. [Step 20 - Localization](./steps/step20_localization.md)
+21. [Step 21 - Continuous Integration and Deployment](./steps/step21_ci_cd.md)
+22. [Step 22 - Performance Monitoring](./steps/step22_performance_monitoring.md)
+
+In each of the linked files, you can provide a detailed explanation of the corresponding step, including instructions, guidelines, and best practices. This way, your junior employee can refer to each file for specific guidance on each step of the project development process.
