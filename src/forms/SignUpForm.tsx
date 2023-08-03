@@ -1,13 +1,12 @@
 // forms/SignUpForm.tsx
 
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { signUpUser } from '../features/user/userThunks';
+import { signUp } from '../features/user/userActions';
 import { SignUpFormData } from '../utils/types'; // Import the SignUpFormData type
 
 
 const SignUpForm: React.FC = () => {
-  const dispatch = useDispatch();
+
   const [formData, setFormData] = useState<SignUpFormData>({
     firstName: '',
     lastName: '',
@@ -27,7 +26,7 @@ const SignUpForm: React.FC = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Dispatch the sign-up action
-    dispatch(signUpUser(formData));
+    signUp(formData);
   };
 
   return (

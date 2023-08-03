@@ -1,13 +1,11 @@
 // forms/SignInForm.tsx
 
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { signInUser } from '../features/user/userThunks';
+import { signIn } from '../features/user/userActions';
 import { SignInFormData } from '../utils/types'; // Import the SignInFormData type
 
 
 const SignInForm: React.FC = () => {
-  const dispatch = useDispatch();
   const [formData, setFormData] = useState<SignInFormData>({
     email: '',
     password: '',
@@ -23,8 +21,7 @@ const SignInForm: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Dispatch the sign-in action
-    dispatch(signInUser(formData));
+    signIn(formData);
   };
 
   return (

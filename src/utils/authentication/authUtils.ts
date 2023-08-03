@@ -1,6 +1,6 @@
 // utils/authentication/authUtils.ts
 
-import { SignInFormData, SignUpFormData } from "../types";
+import { SignInFormData, SignUpFormData, User, JwtToken } from "../types";
 
 // Utility function to handle sign-up
 export const signUpUser = async (formData: SignUpFormData) => {
@@ -21,8 +21,9 @@ export const signUpUser = async (formData: SignUpFormData) => {
     }
 
     // Sign-up successful, do something with the response if needed
-    const responseData = await response.json();
+    const responseData: User = await response.json();
     console.log('Sign-up successful:', responseData);
+    return responseData
   } catch (error) {
     console.error('Sign-up error:', error);
     throw error;
@@ -48,12 +49,39 @@ export const signInUser = async (formData: SignInFormData) => {
     }
 
     // Sign-in successful, do something with the response if needed
-    const responseData = await response.json();
-    console.log('Sign-in successful:', responseData);
+    const { user, jwtToken }: { user: User; jwtToken: JwtToken }  = await response.json();
+    console.log('Sign-in successful:', user);
     // Store the JWT token in local storage or cookies for authentication
-    localStorage.setItem('jwtToken', responseData.jwtToken);
+    localStorage.setItem('jwtToken', JSON.stringify(jwtToken));
+    return user
   } catch (error) {
     console.error('Sign-in error:', error);
+    throw error;
+  }
+};
+
+// Utility function to handle sign-out
+export const signOutUser = async (userId: string) => {
+  try {
+    // Perform an API request to sign out the user
+    const response = await fetch(`/api/signout/${userId}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || 'Sign-out failed');
+    }
+
+    // Sign-out successful, clear the JWT token from local storage or cookies
+    localStorage.removeItem('jwtToken');
+    
+    console.log('Sign-out successful');
+  } catch (error) {
+    console.error('Sign-out error:', error);
     throw error;
   }
 };
