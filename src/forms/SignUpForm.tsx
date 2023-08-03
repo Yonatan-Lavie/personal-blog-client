@@ -3,10 +3,12 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { signUpUser } from '../features/user/userThunks';
+import { SignUpFormData } from '../utils/types'; // Import the SignUpFormData type
+
 
 const SignUpForm: React.FC = () => {
   const dispatch = useDispatch();
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<SignUpFormData>({
     firstName: '',
     lastName: '',
     email: '',

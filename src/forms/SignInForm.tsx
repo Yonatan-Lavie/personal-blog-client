@@ -3,10 +3,12 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { signInUser } from '../features/user/userThunks';
+import { SignInFormData } from '../utils/types'; // Import the SignInFormData type
+
 
 const SignInForm: React.FC = () => {
   const dispatch = useDispatch();
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<SignInFormData>({
     email: '',
     password: '',
   });
