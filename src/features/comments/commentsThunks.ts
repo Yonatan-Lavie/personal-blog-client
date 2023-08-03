@@ -1,7 +1,7 @@
 // commentsThunks.ts
 
 import api from '../../services/api';
-import { Comment } from '../../utils/types';
+import { Comment, NewCommentFormData } from '../../utils/types';
 import { fetchComments, postComment } from './commentsActions';
 
 // Define the thunk to fetch comments data
@@ -21,13 +21,14 @@ export const fetchCommentsData = () => async (dispatch: any) => {
 };
 
 // Define the thunk to post a new comment
-export const postNewComment = (commentData: Comment) => async (dispatch: any) => {
+export const postNewComment = (commentData: NewCommentFormData, postId: string) => async (dispatch: any) => {
   try {
     // Perform the API call here to post the new comment data to the backend
     // For example, using axios or fetch to post the comment data to the server
-    await api.post('/comments', commentData);
+    const response = await api.post('/comments', commentData);
+    const newComment: Comment = response.data
     // Dispatch the action to add the new comment to the state
-    dispatch(postComment(commentData));
+    dispatch(postComment(newComment));
   } catch (error) {
     // Handle any errors that occur during the API call or data posting
     console.error('Error posting comment:', error);

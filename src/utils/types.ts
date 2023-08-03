@@ -39,6 +39,18 @@ export interface Comment {
   title: string;
   date: string;
   author: string;
+  content: string;
+  imageUrl: string;
   excerpt: string;
   // Add other properties for a post if needed
+}
+
+export interface NewCommentFormData {
+  text: string;
+}
+
+export interface NewPostFormData {
+  title: string;
+  content: string;
+  imageUrl?: string;
 }

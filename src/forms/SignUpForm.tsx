@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { signUp } from '../features/user/userActions';
 import { SignUpFormData } from '../utils/types'; // Import the SignUpFormData type
+import { isFieldEmpty, isValidEmail, isValidPasswordLength, isValidUsername } from '../utils/validation/validationUtils';
 
 
 const SignUpForm: React.FC = () => {
@@ -25,8 +26,34 @@ const SignUpForm: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Dispatch the sign-up action
+    // Validate form data before submitting
+    if (isFieldEmpty(formData.firstName) || isFieldEmpty(formData.lastName)) {
+      // Handle empty first name or last name
+      console.error('First name and last name are required.');
+      return;
+    }
+  
+    if (!isValidEmail(formData.email)) {
+      // Handle invalid email format
+      console.error('Invalid email format.');
+      return;
+    }
+  
+    if (!isValidPasswordLength(formData.password)) {
+      // Handle invalid password length
+      console.error('Password must be at least 6 characters long.');
+      return;
+    }
+  
+  try {
+    // Call the signUpUser function from authUtils to perform sign-up API request
     signUp(formData);
+    // Redirect to the home page or any other page after successful sign-up
+    // history.push('/');
+  } catch (error) {
+    // Handle sign-up errors
+    console.error('Error signing up:', error);
+  }
   };
 
   return (
