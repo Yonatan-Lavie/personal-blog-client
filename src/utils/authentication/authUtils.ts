@@ -1,5 +1,7 @@
 // utils/authentication/authUtils.ts
 
+import { SignInFormData, SignUpFormData } from "../types";
+
 // Utility function to handle sign-up
 export const signUpUser = async (formData: SignUpFormData) => {
   try {
