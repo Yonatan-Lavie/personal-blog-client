@@ -3,7 +3,7 @@
 import React from 'react';
 import { Switch, Route, Link, useRouteMatch } from 'react-router-dom';
 import SignUpForm from '../../forms/SignUpForm';
-import SignInForm from '../forms/SignInForm';
+import SignInForm from '../../forms/SignInForm';
 
 const UserAuthentication: React.FC = () => {
   const { path, url } = useRouteMatch();
