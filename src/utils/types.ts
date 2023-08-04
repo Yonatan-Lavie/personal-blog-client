@@ -54,3 +54,23 @@ export interface NewPostFormData {
   content: string;
   imageUrl?: string;
 }
+
+
+export interface UserProfile {
+  firstName: string;
+  lastName: string;
+  email: string;
+  username: string;
+  photo: string;
+  status: string;
+  role: string;
+  createdAt: string; // If you are using a Date object instead of a string, you can replace "string" with "Date".
+}
+
+export interface NewUserProfileForm {
+  firstName: string;
+  lastName: string;
+  email: string;
+  username: string;
+  photo: string | undefined;
+}

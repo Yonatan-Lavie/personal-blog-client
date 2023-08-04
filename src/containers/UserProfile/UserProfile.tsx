@@ -1,42 +1,45 @@
 // containers/UserProfile/UserProfile.tsx
+import React, { useReducer } from 'react';
+import { Button, Container } from '@mui/material';
+import UserProfileComponent  from '../../components/User/UserProfile'
+import UpdateUserProfileForm from '../../components/User/UpdateUserProfileForm';
 
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../store';
-import { updateUserProfilePicture } from '../features/user/userThunks';
-import UserProfileForm from '../forms/UserProfileForm';
+type State = boolean;
+type Action = { type: string; };
+
+const initialState: State = false;
+
+function reducer(state: State, action: Action): State {
+  switch (action.type) {
+    case 'UPDATE_MODE':
+      return true;
+    case 'VIEW_MODE':
+      return false;
+    default:
+      return state;
+  }
+}
 
 const UserProfile: React.FC = () => {
-  const dispatch = useDispatch();
-  const { user, loading, error } = useSelector((state: RootState) => state.user);
 
-  const handleProfilePictureUpdate = (photoData: string) => {
-    dispatch(updateUserProfilePicture(photoData));
-  };
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  }
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
-    <div>
-      {user && (
-        <div>
-          <h2>User Profile</h2>
-          {/* Display user information */}
-          <p>Name: {user.firstName} {user.lastName}</p>
-          <p>Email: {user.email}</p>
-          {/* Display user profile picture */}
-          <img src={user.photo} alt="Profile" width="150" />
-          {/* Implement form for updating user profile */}
-          <UserProfileForm onProfilePictureUpdate={handleProfilePictureUpdate} />
-        </div>
-      )}
-    </div>
+    <Container maxWidth="sm">
+
+      {
+        state === true ? 
+        <>
+          <UpdateUserProfileForm />
+          <Button variant="contained" onClick={() => dispatch({type: 'VIEW_MODE'})}>Cancel</Button>
+        </>
+        :
+        <>
+          <UserProfileComponent />
+          <Button variant="contained" onClick={() => dispatch({type: 'UPDATE_MODE'})}>Update</Button>
+        </>
+      }
+    </Container>
   );
 };
 
