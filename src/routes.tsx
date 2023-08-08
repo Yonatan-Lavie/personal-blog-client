@@ -16,6 +16,8 @@ import {
 } from "react-router-dom";
 import Profile from './pages/Profile';
 import Navigation from './components/Header/Navigation';
+import LoginPage from './pages/LoginPage';
+import SignUpPage from './pages/SignUpPage';
 
 const router = createBrowserRouter([
   {
@@ -45,13 +47,13 @@ const router = createBrowserRouter([
       },
       {
         path: "/signup",
-        element: <UserAuthentication />,
+        element: <SignUpPage />,
         // loader: contactLoader,
         // action: editAction
       },
       {
         path: "/signin",
-        element: <UserAuthentication />,
+        element: <LoginPage />,
         // loader: contactLoader,
         // action: editAction
       },
