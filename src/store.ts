@@ -12,6 +12,7 @@ const store = configureStore({
     comments: commentsReducer,
     // Add other reducers here if you have more features
   },
+  devTools: process.env.NODE_ENV !== 'production',
 });
 
 export type RootState = ReturnType<typeof store.getState>;
